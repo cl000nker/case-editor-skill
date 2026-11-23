@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Обложка кейса — 1400×788</title>
+<!--
+  Шаблон обложки. Открывается двойным кликом, без интернета и зависимостей.
+  Меняй только блок .art и переменные :root.
+  Скриншот для Behance: 1400×788 (этот размер), для Dprofile — 1600×1200 через zoom.
+-->
+<style>
+  :root{
+    --canvas:#E8DFCC;   /* фон */
+    --ink:#141414;      /* текст и знак */
+    --accent:#C8462B;   /* акцент, одна деталь */
+    --pad:88px;         /* поля */
+    --title:112px;      /* кегль названия */
+    --small:22px;       /* мелкий капс */
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#222}
+  body{display:flex;justify-content:center;padding:40px 0;
+       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+
+  .canvas{
+    position:relative;width:1400px;height:788px;background:var(--canvas);
+    color:var(--ink);overflow:hidden;flex:none;
+  }
+
+  /* --- сетка полей, можно включить для проверки: добавь класс .grid --- */
+  .canvas.grid::after{
+    content:"";position:absolute;inset:var(--pad);
+    border:1px dashed rgba(0,0,0,.25);pointer-events:none;
+  }
+
+  .top{position:absolute;top:var(--pad);left:var(--pad);right:var(--pad);
+       display:flex;justify-content:space-between;align-items:flex-start}
+
+  .caps{font-size:var(--small);letter-spacing:.14em;text-transform:uppercase;line-height:1.35}
+
+  .title{position:absolute;left:var(--pad);bottom:var(--pad);
+         font-size:var(--title);line-height:.96;letter-spacing:-.035em;
+         max-width:10ch;font-weight:600}
+
+  .note{position:absolute;right:var(--pad);bottom:var(--pad);
+        width:320px;font-size:var(--small);line-height:1.45;text-align:right;opacity:.75}
+
+  /* --- герой кадра: сюда ставится знак, объект или пустота --- */
+  .art{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
+  .art svg{width:46%;height:auto;opacity:.92}
+  .art .dot{width:220px;height:220px;border-radius:50%;background:var(--accent)}
+
+  /* --- вариант B: типографика как герой --- */
+  .canvas.type-only .art{display:none}
+  .canvas.type-only .title{font-size:190px;max-width:12ch;bottom:auto;top:50%;
+    transform:translateY(-52%)}
+
+  /* --- вариант C: срез краем кадра --- */
+  .canvas.cropped .art{place-items:end end}
+  .canvas.cropped .art svg{width:78%;transform:translate(14%,18%)}
+
+  @media print{body{padding:0}.canvas{box-shadow:none}}
+</style>
+</head>
+<body>
+
+<!-- ВАРИАНТ A. один объект + подпись в углу -->
+<div class="canvas" id="canvasA">
+  <div class="art">
+    <!-- заменить на свой знак / SVG / <img> -->
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="42" stroke="currentColor" stroke-width="3"/>
+      <circle cx="38" cy="44" r="6" fill="currentColor"/>
+      <circle cx="62" cy="44" r="6" fill="currentColor"/>
+      <path d="M50 56 L44 78 L56 78 Z" fill="currentColor"/>
+    </svg>
+  </div>
+  <div class="top">
+    <div class="caps">Arthello</div>
+    <div class="caps">Система персонажа</div>
+  </div>
+  <div class="title">Собрать заново</div>
+  <div class="note">Три узла, двенадцать эмоций,<br>производство без перерисовки</div>
+</div>
+
+<!--
+  ВАРИАНТ B. только типографика:
+  <div class="canvas type-only"> … </div>
+
+  ВАРИАНТ C. объект, срезанный краем:
+  <div class="canvas cropped"> … </div>
+-->
+
+</body>
+</html>
